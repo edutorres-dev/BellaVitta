@@ -179,7 +179,7 @@ CREATE TABLE usuarios (
 ```
 
 ### Tabela `produtos`
-
+```sql
 CREATE TABLE `produtos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -191,10 +191,10 @@ CREATE TABLE `produtos` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+```
 
 ### Tabela `pedidos`
-
+```sql
 CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cliente` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -209,7 +209,7 @@ CREATE TABLE `pedidos` (
   KEY `cliente` (`cliente`),
   KEY `data_pedido` (`data_pedido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+```
 ---
 
 ## 🔐 Autenticação e Acesso
