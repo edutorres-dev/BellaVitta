@@ -1,0 +1,612 @@
+/**
+* Arquivo: style.css
+* 
+* Descrição:
+* Folha de estilos principal da Pizzaria BellaVitta, contendo:
+* -> Estilos globais e tipografia
+* -> Componentes de UI e layouts responsivos
+* -> Efeitos visuais e animações
+* -> Temas e cores da marca
+* -> Componentes de interface da área administrativa
+* -> Modais (pagamento, usuário, pedidos)
+* -> Formulários e validações
+* -> Efeitos visuais específicos da área restrita
+* -> Componentes de UI como cards, botões e listas
+* 
+* 
+* @ Autor - Eduardo Torres Do Ó
+* @ Direitos Reservados - 2025 BellaVitta
+*/
+
+
+/* ==============================================
+   VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
+=============================================== */
+:root {
+  --primary-color: #ffc506;
+  --dark-color: #252525;
+  --text-light: #ffffff;
+  --transition: all 0.5s ease;
+}
+
+/* ==============================================
+   CORPO DE ESTILO DA PAGINA 
+=============================================== */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* ==============================================
+   LOGOTIPO
+=============================================== */
+.brand-logo {
+  height: 65px;
+  margin-right: -1px;
+}
+
+/* QUANDO O LOGO ESTIVER STICKY */
+.brand-logo.sticky-top {
+  max-height: 60px;
+}
+
+/* ==============================================
+   MENU DE NEVEGAÇÃO
+=============================================== */
+.navbar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 999;
+  transition: var(--transition);
+  padding: 15px 15px !important;
+  
+ 
+}
+
+/* ==============================================
+   NAVBAR QUANDO FOR STICKY
+=============================================== */
+.navbar.sticky-top {
+  position: fixed;
+  background: var(--dark-color);
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  transition: all 0.3s ease;
+
+}
+
+
+/* ==============================================
+   COMPORTAMENTO DO NAVBAR , LOGOTIPO PARA TELAS ATÉ 991PX
+=============================================== */
+@media (max-width: 991.98px) {
+  .navbar {
+    position: relative;
+    background: var(--dark-color);
+  }
+
+  .brand-logo {
+    max-height: 45px;
+  }
+
+}
+
+/* ===========================================
+   AJUSTES PARA TELAS MENORES QUE 361PX
+=========================================== */
+@media (max-width: 360px) {
+
+  /* Reduz o tamanho do logo */
+  .brand-logo {
+    height: 45px !important;
+  }
+
+  /* Reduz o título BellaVitta */
+  .navbar-brand .titulo {
+    font-size: 1.2rem !important;
+  }
+
+  /* Impede que os botões quebrem de linha */
+  .navbar .d-flex {
+    white-space: nowrap;
+    flex-shrink: 1;
+  }
+
+  /* Reduz o espaço entre os botões */
+  .navbar .d-flex.gap-3 {
+    gap: 8px !important;
+  }
+
+  /* Ajusta margens para caber tudo */
+  .navbar {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
+
+/* ==============================================
+   SEÇÃO HERO
+=============================================== */
+.hero-section {
+  background: linear-gradient(rgba(27, 26, 26, 0.6), rgba(27, 26, 26, 0.6)),
+    url(../img/hero/fundopizza.jpg);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* ==============================================
+   SEÇÃO DO CARDÁPIO
+=============================================== */
+
+/* IMAGEM DAS PIZZAS DENTRO DO CONTAINER */
+.card-img-container {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.card-img-container img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ALINHAMENTO DO CONTEÚDO */
+.card-body {
+  text-align: center;
+}
+/* TITULO DOS CARDS */
+.card-title {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+/* ESPAÇAMENTO ENTRE OS CARDS */
+.list-unstyled li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 3px 0;
+}
+
+/* BOTÃO  */
+.btn-warning {
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* QUANDO PASSA O MOUSE POR CIMA */
+.btn-warning:hover {
+  background-color: transparent;
+  color: rgb(255, 208, 0);
+  border: 2px solid rgb(255, 208, 0);
+}
+
+/* EFEITO 3D NOS CARDS */
+.card-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+}
+
+/* QUANDO PASSAR O MOUSE POR CIMA DO CARD */
+.card-item:hover {
+  transform: scale(1.05) perspective(1000px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ==============================================
+  MODAL DE PAGAMENTO
+=============================================== */
+.modal-content {
+  background-color: #040304e8;
+  color: white;
+}
+
+.form-control {
+  background-color: #040304e8;
+  color: white;
+  border: 1px solid #ffffff55;
+}
+
+.form-control::placeholder {
+  color: white;
+}
+
+.form-control:focus {
+  border-color: white;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  background-color: #040304e8;
+  color: white;
+}
+
+.nav-tabs .nav-link {
+  color: white;
+}
+
+.nav-tabs .nav-link.active {
+  border-color: #6b3e1e;
+}
+
+.btn-custom {
+  background-color: #ffc107;
+  color: #040304e8;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+  background: transparent;
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+/* ==============================================
+  MODAL ESCOLHA DE TAMANHO DAS PIZZAS
+=============================================== */
+.list-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  padding: 10px;
+  color: white;
+}
+
+.list-group-item input[type="radio"] {
+  appearance: none;
+  background: white;
+  cursor: pointer;
+}
+
+.list-group-item input[type="radio"]:checked {
+  background-color: rgb(240, 174, 7);
+}
+
+
+/* ==============================================
+  MODAL PRINCIPAL DO USUÁRIO (PERFIL)
+=============================================== */
+.user-modal .modal-content {
+  background-color: #1a1a1a;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-modal .modal-header {
+  border-bottom: 1px solid #ffc506;
+  position: relative;
+  padding: 1rem 1.5rem;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ffc506;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -40px auto 20px;
+  font-size: 2.5rem;
+  border: 3px solid #1a1a1a;
+}
+
+.user-info {
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.user-info h4 {
+  color: #ffc506;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+}
+
+.user-info p {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.user-options {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.user-options li {
+  border-bottom: 1px solid #333;
+  width: 100%;
+  text-align: center;
+}
+
+.user-options li:last-child {
+  border-bottom: none;
+}
+
+.user-options a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.user-options a:hover {
+  background-color: #ffc506;
+  color: #1a1a1a;
+}
+
+.user-options a i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: #ffc506;
+}
+
+.user-options a:hover i {
+  color: #1a1a1a;
+}
+
+.user-options .logout {
+  color: #ff6b6b;
+}
+
+.user-options .logout:hover {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.user-options .logout i {
+  color: #ff6b6b;
+}
+
+.btn-user {
+  background: transparent;
+  border: none;
+  color: #ffc506;
+  font-size: 1.9rem;
+  transition: all 0.3s;
+  padding: 5px 10px;
+}
+
+.btn-user:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+.user-modal .modal-footer {
+  border-top: 1px solid #333;
+  padding: 15px 20px;
+  justify-content: flex-end;
+}
+
+.user-modal .btn {
+  padding: 8px 16px;
+  font-size: 0.95rem;
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+/* RESPONSIVIDADAE NO MODAL DO USUÁRIO */
+@media (max-width: 768px) {
+  .user-modal .modal-dialog {
+    margin: 0.5rem auto;
+    max-width: 95%;
+  }
+
+  .user-info h4 {
+    font-size: 1.3rem;
+  }
+
+  .user-options a {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .user-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    margin: -35px auto 15px;
+  }
+
+  .user-info {
+    padding: 0 15px;
+  }
+}
+
+.user-modal .modal-body form {
+  padding: 0 20px;
+}
+
+.user-modal .form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.user-modal .form-control {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.user-modal .mb-3 {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* ==============================================
+  MENSAGENS DE VALIDAÇÃO DOS FORMULÁRIO
+=============================================== */
+
+.erro-geral {
+  background: #c82a2a;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.erro-input {
+  border: 1.6px solid #e92424e9 !important;
+}
+
+.sucesso {
+  background: #1daa5f;
+  color: white;
+  font-weight: bold;
+  padding: 14.5px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.erro-validacao {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #e92424e9;
+  text-align: left;
+  padding-left: 5px;
+}
+
+/* MENSAGEM DE DELETAR CONTA LA DO MODAL DE EXCLUIR CONTA */
+#deleteAccountModal .modal-body p {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+
+/* ==============================================
+  DETALHES DO PEDIDO NO MODAL DE PAGAMENTO
+=============================================== */
+
+#descricaoPedido {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+#descricaoPedido div {
+  padding: 8px;
+  border-bottom: 1px solid #333;
+}
+
+#descricaoPedido div:last-child {
+  border-bottom: none;
+}
+
+#descricaoPedido img {
+  object-fit: cover;
+}
+
+#descricaoPedido::-webkit-scrollbar {
+  width: 6px;
+}
+
+#descricaoPedido::-webkit-scrollbar-thumb {
+  background-color: #ffc506;
+  border-radius: 3px;
+}
+
+/* ==============================================
+  MENU LATERAL OFFCANVAS 
+=============================================== */
+#meusPedidosOffcanvas {
+  background-color: #212529;
+  color: white;
+}
+
+#meusPedidosOffcanvas .offcanvas-header {
+  border-bottom: 1px solid #6c757d;
+}
+
+#meusPedidosOffcanvas .offcanvas-body {
+  padding: 1rem;
+}
+
+#modal-pedidos-itens::-webkit-scrollbar {
+  width: 5px;
+}
+
+#modal-pedidos-itens::-webkit-scrollbar-thumb {
+  background-color: #ffc506;
+  border-radius: 10px;
+}
+
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.pedido-item {
+  border-bottom: 1px solid #444;
+  padding: 10px 0;
+}
+
+.pedido-item:last-child {
+  border-bottom: none;
+}
+
+.bag-badge {
+  position: relative;
+  top: -13px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50%;
+
+
+}
+
