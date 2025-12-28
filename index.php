@@ -81,8 +81,16 @@
     <link href="assets/css/style.css" rel="stylesheet" />
 
 </head>
+    
+     <!-- RESOLVE A QUESTAO DE CLICAR NO LINK DO MENU E REDIRECIOANR CORTANDO O TITULO -->
+    <style>
+        html {
+        scroll-padding-top: 80px; /* Ajuste conforme a altura da navbar */
+    }   
+    </style>
+    
 
-<body>
+<body  data-bs-spy="scroll" data-bs-target="#home">
 
     <div class="container-fluid position-relative p-0" id="menu">
         <!-- =========================
@@ -402,3 +410,4 @@
 
 
 </html>
+
