@@ -120,6 +120,17 @@ if (!$usuario) {
     header("location: login.php");
 }
 
+/* NORMALIZA O ARRAY DO USUÁRIO (EVITA WARNINGS) */
+if (!is_array($usuario)) {
+    $usuario = [
+        'id'      => null,
+        'nome'    => '',
+        'email'   => '',
+        'contato' => '',
+        'nivel_acesso' => ''
+    ];
+}
+
 // SE ESTIVER AUTENTICADO E FOR MASTER
 if ($usuario && $usuario['nivel_acesso'] === 'master') {
     // REDIRECIONA PARA O PAINEL ADMIN
@@ -1765,5 +1776,6 @@ if(isset($_POST["descricao_pedido"]) && isset ($_POST["valor_total"])&& isset ($
 
 
 </body>
+
 
 </html>
